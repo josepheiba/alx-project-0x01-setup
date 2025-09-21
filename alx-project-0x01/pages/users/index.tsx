@@ -1,7 +1,7 @@
 import UserCard from "@/components/common/UserCard";
 import UserModal from "@/components/common/UserModal";
 import Header from "@/components/layout/Header";
-import { UserData, UserProps } from "@/interfaces";
+import { UserProps } from "@/interfaces";
 import { useState } from "react";
 
 interface UsersProps {
@@ -10,9 +10,9 @@ interface UsersProps {
 
 const Users: React.FC<UsersProps> = ({ posts }) => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [user, setUser] = useState<UserData | null>(null);
+  const [user, setUser] = useState<UserProps | null>(null);
 
-  const handleAddUser = (newUser: UserData) => {
+  const handleAddUser = (newUser: UserProps) => {
     setUser({ ...newUser, id: posts.length + 1 });
   };
 
@@ -30,7 +30,7 @@ const Users: React.FC<UsersProps> = ({ posts }) => {
           </button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {posts?.map((user: UserProps) => (
+          {posts.map((user: UserProps) => (
             <UserCard
               key={user.id}
               id={user.id}
